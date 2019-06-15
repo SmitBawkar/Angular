@@ -1,51 +1,75 @@
-<div class="container">
-  <h2>User Settings</h2>
-  <form #form="ngForm">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>  
-    </div>
-    <div class="form-check form-group">
-      <input class="form-check-input" name="emailOffers" type="checkbox" value="" id="emailOffers" [(ngModel)]="userSettings.email">
-      <label class="form-check-label" for="emailOffers">
-        Email Special Offers
-      </label>
-    </div>
-    <p>User Interface Styles</p> 
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="UIStyle" id="exampleRadios1" value="Light" checked [(ngModel)]="userSettings.userInterface">
-            <label class="form-check-label" for="exampleRadios1">
-              Light
-            </label>
+<br><br>
+<div class="container form-container">
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6">
+        <h2>User Settings</h2>
+        <form #formUserSetting="ngForm" (ngSubmit)="onSubmit(formUserSetting)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" 
+                   name="name" class="form-control"                                
+                   #fieldName="ngModel"                   
+                   required
+                   [class.field-error]="formUserSetting.submitted && fieldName.invalid"
+                   [(ngModel)]="userSettings.name"/>  
+          <div  [hidden]="!formUserSetting.submitted || fieldName.valid"
+                class="alert alert-danger">
+                Name Required
+          </div>       
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="UIStyle" id="exampleRadios2" value="Medium" [(ngModel)]="userSettings.userInterface">
-            <label class="form-check-label" for="exampleRadios2">
-              Medium 
-            </label>
-          </div>
-          <div class="form-check">
-              <input class="form-check-input" type="radio" name="UIStyle" id="exampleRadios3" value="Dark" [(ngModel)]="userSettings.userInterface">
-              <label class="form-check-label" for="exampleRadios3">
-                Dark
-              </label>
-            </div>
-    </div>
-    <div class="form-group">
-        <label for="subscriptionType">Subscription Type</label>
-        <select class="form-control" id="subscriptionType" name="subscriptionType" [(ngModel)]="userSettings.subscriptionType">
-          <option>Monthly</option>
-          <option>Annual</option>
-          <option>LifeTime</option>         
-        </select>
-    </div>
-    <div class="form-group">
-          <label for="notes">Name</label>
-          <textarea id="notes" name="notes" class="form-control" rows="3" [(ngModel)]="userSettings.notes"></textarea>   
-    </div>
-    <button class="btn btn-primary">Send</button>
-  </form>  
-</div>
-<h5>{{form.value| json}}</h5>
 
+          <div class="form-check form-group">
+            <input class="form-check-input" 
+                   name="emailOffers" 
+                   type="checkbox" 
+                   value="" id="emailOffers" 
+                   [(ngModel)]="userSettings.email">
+            <label class="form-check-label" for="emailOffers">
+              Email Special Offers
+            </label>
+          </div>
+          <p>User Interface Styles</p> 
+          <div class="form-group" [class.field-error]="formUserSetting.submitted && fieldUI.invalid">
+              <div class="form-check">
+                  <input class="form-check-input" required type="radio" name="UIStyle" id="exampleRadios1" value="Light" #fieldUI="ngModel" [(ngModel)]="userSettings.userInterface">
+                  <label class="form-check-label" for="exampleRadios1">
+                    Light
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" required type="radio" name="UIStyle" id="exampleRadios2" value="Medium" #fieldUI="ngModel" [(ngModel)]="userSettings.userInterface">
+                  <label class="form-check-label" for="exampleRadios2">
+                    Medium 
+                  </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" required type="radio" name="UIStyle" id="exampleRadios3" value="Dark" #fieldUI="ngModel" [(ngModel)]="userSettings.userInterface">
+                    <label class="form-check-label" for="exampleRadios3">
+                      Dark
+                    </label>
+                </div>
+                 
+          </div>
+          <div  [hidden]="!formUserSetting.submitted || fieldUI.valid"
+                class="alert alert-danger">
+                Please select User Interface
+          </div>
+          <div class="form-group">
+              <label for="subscriptionType">Subscription Type</label>
+              <select class="form-control" id="subscriptionType" name="subscriptionType" [(ngModel)]="userSettings.subscriptionType">
+                <option>Monthly</option>
+                <option>Annual</option>
+                <option>LifeTime</option>         
+              </select>
+          </div>
+          <div class="form-group">
+                <label for="notes">Name</label>
+                <textarea id="notes" name="notes" class="form-control" rows="3" [(ngModel)]="userSettings.notes"></textarea>   
+          </div>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>  
+    </div>
+    <div class="col-xs-3 col-md-3"></div>
+  </div>
+  </div>
