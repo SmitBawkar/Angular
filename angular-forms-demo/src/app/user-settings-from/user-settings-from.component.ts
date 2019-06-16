@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSettings } from '../data/user-settings';
 import { NgForm } from '@angular/forms';
+import { DataAccessService } from '../data/data-access.service';
+import { post } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'fmd-user-settings-from',
@@ -8,8 +10,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./user-settings-from.component.css']
 })
 export class UserSettingsFromComponent implements OnInit {
-
-  constructor() { }
+  isPostError;
+  postErrorMsg;
+  constructor(
+    private _dataService:DataAccessService
+  ) { }
   userSettings: UserSettings = {
     name:null,
     email:null,
@@ -21,8 +26,17 @@ export class UserSettingsFromComponent implements OnInit {
 
   onSubmit(formUserSetting:NgForm): void{
     if(formUserSetting.valid)
-      console.log(formUserSetting.value);
+    {
+      this._dataService.postData(this.userSettings).subscribe(
+        (products)=>console.log(products),
+        (err)=>{
+          this.isPostError =true;
+          this.postErrorMsg = err.errorMessage;
+        }
+      );
+    }
   }
+
   ngOnInit() {
 
   }
