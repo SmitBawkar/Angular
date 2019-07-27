@@ -8,12 +8,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  hide = true;
   constructor() { }
   ngOnInit() {
   }
 
-  onSubmit(form : NgForm){
+  onSubmit(form: NgForm) {
     console.log(form);
   }
 

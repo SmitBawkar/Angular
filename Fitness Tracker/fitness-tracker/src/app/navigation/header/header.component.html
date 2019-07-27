@@ -1,0 +1,25 @@
+<mat-toolbar color="accent">
+
+    <button mat-icon-button
+            fxHide.gt-xs="true" fxShow
+            (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a [routerLink]="['/']">
+        <div>
+            <span style="font-size: 1.7em">SB</span>
+            <span style="font-size: 0.6em"> FITNESS HUB</span>
+        </div>
+    </a>
+
+    <ul fxlayout="row"
+        fxLayoutGap="10px"
+        fxLayoutAlign="end"
+        fxFlex
+        fxHide fxShow.gt-xs="true">
+      <li ><a [routerLink]="['/signup']"  routerLinkActive="active-link">Sign up</a></li>
+      <li ><a [routerLink]="['/login']"  routerLinkActive="active-link">Login</a></li>
+      <li ><a [routerLink]="['/training']"  routerLinkActive="active-link">Training</a></li>
+      <li >Signout</li>
+    </ul>
+  </mat-toolbar>

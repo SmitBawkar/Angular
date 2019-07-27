@@ -13,6 +13,8 @@ import { PastTrainingsComponent } from './training/past-trainings/past-trainings
 import { NewTrainingsComponent } from './training/new-trainings/new-trainings.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SideNavListComponent } from './navigation/side-nav-list/side-nav-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     TrainingComponent,
     PastTrainingsComponent,
     NewTrainingsComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    HeaderComponent,
+    SideNavListComponent
   ],
   imports: [
     BrowserModule,
